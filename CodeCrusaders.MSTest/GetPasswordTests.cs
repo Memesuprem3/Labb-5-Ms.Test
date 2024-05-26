@@ -80,6 +80,7 @@ namespace CodeCrusaders.MSTest
             Assert.AreEqual("mockUser2Password", result);
         }
 
+
         private string GetPassword(string input)
         {
             string password = "";
