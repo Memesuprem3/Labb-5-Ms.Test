@@ -1,5 +1,8 @@
 # Labb-5-Ms.Test
 
+
+Koden ligger i Master-Branch
+
 Jag har tre huvudsakliga funktioner i bankapplikation som jag testar: PrintTransferHistory, GetPassword, och AddUser. 
 Här är en genomgång av potentiella problem och risker för varje funktion.
 
