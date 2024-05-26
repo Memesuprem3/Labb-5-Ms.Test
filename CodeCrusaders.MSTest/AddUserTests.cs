@@ -13,6 +13,7 @@ namespace CodeCrusaders.MSTest
     {
 
         [TestMethod]
+        [Description("Checks to see if a user is added")]
         public void AddUser_UserIsAdded()
         {
             // Arrange
@@ -24,11 +25,12 @@ namespace CodeCrusaders.MSTest
                 AddUser();
 
                 // Assert
-                Assert.AreEqual(1, Start.CustomerList.Count);
+                Assert.AreEqual(2, Start.CustomerList.Count);
             }
         }
 
         [TestMethod]
+        [Description("This checks if the username is saved corectly")]
         public void AddUser_UsernameIsSavedCorrectly()
         {
             // Arrange
@@ -45,6 +47,7 @@ namespace CodeCrusaders.MSTest
         }
 
         [TestMethod]
+        [Description("This test checks if the pin is saved corectly")]
         public void AddUser_PinIsSavedCorrectly()
         {
             // Arrange

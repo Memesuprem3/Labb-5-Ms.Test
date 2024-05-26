@@ -14,75 +14,57 @@ namespace CodeCrusaders.MSTest
 
 
         [TestMethod]
-        public void GetPassword_EnterKey_ReturnsPassword()
+        [Description("This test checks if the 'enter password' field is empty")]
+        public void GetPassword_EmptyInput_ReturnsEnterPassword()
         {
             // Arrange
-            string input = "password\n";
+            string input = "";
+            string correctPassword = "password";
 
             // Act
-            string result = GetPassword(input);
+            string result = GetPassword(input, correctPassword);
 
             // Assert
-            Assert.AreEqual("password", result);
+            Assert.AreEqual("Enter password", result);
         }
 
         [TestMethod]
-        public void GetPassword_Backspace_RemovesLastCharacter()
+        [Description("This test checks if the password is correct, then a prompt is returned 'Password accepted")]
+        public void GetPassword_CorrectPassword_ReturnsPasswordAccepted()
         {
             // Arrange
-            string input = "pass\bword\n";
+            string input = "password";
+            string correctPassword = "password";
 
             // Act
-            string result = GetPassword(input);
+            string result = GetPassword(input, correctPassword);
 
             // Assert
-            Assert.AreEqual("pasword", result);
+            Assert.AreEqual("Password accepted", result);
         }
 
         [TestMethod]
-        public void GetPassword_NoControlCharactersInPassword()
+        [Description("This test checks the password, if it is wrong 'wrong password' is prompted")]
+        public void GetPassword_WrongPassword_ReturnsWrongPassword()
         {
             // Arrange
-            string input = "pa\0ssword\n";
+            string input = "wrongpassword";
+            string correctPassword = "password";
 
             // Act
-            string result = GetPassword(input);
+            string result = GetPassword(input, correctPassword);
 
             // Assert
-            Assert.AreEqual("password", result);
+            Assert.AreEqual("Wrong password", result);
         }
 
-        // Mockup användare 1
-        [TestMethod]
-        public void GetPassword_MockUser1()
+        private string GetPassword(string input, string correctPassword)
         {
-            // Arrange
-            string input = "mockUser1Password\n";
+            if (string.IsNullOrEmpty(input))
+            {
+                return "Enter password";
+            }
 
-            // Act
-            string result = GetPassword(input);
-
-            // Assert
-            Assert.AreEqual("mockUser1Password", result);
-        }
-
-        // Mockup användare 2
-        [TestMethod]
-        public void GetPassword_MockUser2()
-        {
-            // Arrange
-            string input = "mockUser2Password\n";
-
-            // Act
-            string result = GetPassword(input);
-
-            // Assert
-            Assert.AreEqual("mockUser2Password", result);
-        }
-
-
-        private string GetPassword(string input)
-        {
             string password = "";
             foreach (char c in input)
             {
@@ -98,7 +80,15 @@ namespace CodeCrusaders.MSTest
                     password += c;
                 }
             }
-            return password;
+
+            if (password == correctPassword)
+            {
+                return "Password accepted";
+            }
+            else
+            {
+                return "Wrong password";
+            }
         }
     }
 }

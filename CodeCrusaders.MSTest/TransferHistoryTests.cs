@@ -20,11 +20,13 @@ namespace CodeCrusaders.MSTest
             TransferLogs = new List<TransferLog>
         {
             new TransferLog { TransferDetails = "Log 1" },
-            new TransferLog { TransferDetails = "Log 2" }
+            new TransferLog { TransferDetails = "Log 2" },
+            null
         };
         }
 
         [TestMethod]
+        [Description("Checks if the log/logs can be printed")]
         public void PrintTransferHistory_AllLogsPrinted()
         {
             // Arrange
@@ -42,6 +44,7 @@ namespace CodeCrusaders.MSTest
         }
 
         [TestMethod]
+        [Description("Checks for nulls or faulty data")]
         public void PrintTransferHistory_EmptyLogs_NoOutput()
         {
             // Arrange
@@ -60,9 +63,11 @@ namespace CodeCrusaders.MSTest
         }
 
         [TestMethod]
+        [Description("This check that the function dosent throw an exception")]
         public void PrintTransferHistory_NoExceptionThrown()
         {
             // Arrange
+            
 
             // Act & Assert
             try
@@ -82,6 +87,7 @@ namespace CodeCrusaders.MSTest
                 Console.WriteLine(log.TransferDetails);
             }
         }
+
 
         public class TransferLog
         {
